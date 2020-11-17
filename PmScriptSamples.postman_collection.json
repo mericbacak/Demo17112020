@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "60c1e20c-36ea-461f-8943-2135038ec569",
+		"name": "PmScriptSamples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "demo1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3970f51c-fdb7-4e59-b148-a4fac590b8f2",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"        pm.expect(pm.response.code).to.eql(200);\r",
+							"    }   \r",
+							");\r",
+							"pm.test(\"responseBody\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.page).to.eql(1);\r",
+							"    pm.expect(responseJson.per_page).to.eql(6);\r",
+							"    pm.expect(responseJson.total).to.eql(12);\r",
+							"    pm.expect(responseJson.total_pages).to.eql(2);\r",
+							"    }    \r",
+							");\r",
+							"pm.test(\"Status code name has string\", () => {\r",
+							"  pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "content-type",
+							"value": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "demo2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a74362f-daee-454f-a047-dd2c22063a54",
+						"exec": [
+							"pm.test(\"Status code is 200\", () =>  {\r",
+							"        pm.expect(pm.response.code).to.eql(200);\r",
+							"    }   \r",
+							");\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(\"Verify Response data\", () => {  \r",
+							"  pm.expect(responseJson.data.id).is.to.eql(2)\r",
+							"  pm.expect(responseJson.data.first_name).is.to.eql(\"Janet\")\r",
+							"  pm.expect(responseJson.data.last_name).is.to.eql(\"Weaver\")\r",
+							"  pm.expect(responseJson.data.avatar).is.to.eql(\"https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg\")\r",
+							"});\r",
+							"pm.test(\"Verify Response ad\", () => {  \r",
+							"  pm.expect(responseJson.ad.company).is.to.eql(\"StatusCode Weekly\")\r",
+							"  pm.expect(responseJson.ad.url).is.to.eql(\"http://statuscode.org/\")\r",
+							"  pm.expect(responseJson.ad.text).is.to.eql(\"A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things.\")\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", () => {\r",
+							"  pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
